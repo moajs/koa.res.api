@@ -1,0 +1,23 @@
+{
+  "name": "koa.res.api",
+  "version": "1.0.0",
+  "description": "koa.res.api is an express middleware for render json api , it convention over api format",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm publish .",
+    "test": "node --harmony app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moajs/res.api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moajs/res.api/issues"
+  },
+  "homepage": "https://github.com/moajs/res.api#readme",
+  "devDependencies": {
+    "koa": "^0.21.0"
+  }
+}
