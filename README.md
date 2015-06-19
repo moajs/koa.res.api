@@ -23,7 +23,7 @@ more see at
 
 ## Install
 
-    npm install --save res.api
+    npm install --save koa.res.api
     
 ## Usages
 
