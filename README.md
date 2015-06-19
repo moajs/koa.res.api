@@ -19,7 +19,7 @@ koa.res.api is a koajs middleware for render json api , it convention over api f
 more see at 
 
 - [cnode 客户端 API 开发总结](https://cnodejs.org/topic/552b3b9382388cec50cf6d95)
-- [res.api is an express](https://github.com/moajs/res.api)
+- [res.api on express](https://github.com/moajs/res.api)
 
 ## Install
 
