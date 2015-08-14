@@ -102,13 +102,18 @@ function api(){
   function _is_not_has_prototype(name){
     return !_res.hasOwnProperty(name)&&(name in _res);
   }
-  
+
   function _api (http_code, data, status) {
-    _res.type = 'json';
-    _res.status = http_code;
-    _res.body = {
-      data    : data,
-      status  : status
+    if (_res.is_jsonp && _res.is_jsonp == true) {
+      return _res.status(http_code).jsonp({
+        data    : data,
+        status  : status
+      })
+    } else {
+      return _res.status(http_code).json({
+        data    : data,
+        status  : status
+      })
     }
   }
 }
