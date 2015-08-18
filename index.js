@@ -120,8 +120,24 @@ function api(){
 
 function api_error(data){
   var _res = this;
-  _res.api(data,{
-      code : -1,
-      msg  : 'api error'
+  var _error_code = 200;
+  var _error_status_code = -1;
+  var _error_status_msg = 'api error';
+  
+  if(_res.api_error_code){
+    _error_code = _res.api_error_code;
+  }
+  
+  if(_res.api_error_status_code){
+    _error_status_code = _res.api_error_status_code;
+  }
+  
+  if(_res.api_error_status_msg){
+    _error_status_msg = _res.api_error_status_msg;
+  }
+  
+  _res.api(_error_code, data, {
+      code : _error_status_code,
+      msg  : _error_status_msg
   });
 }
