@@ -4,7 +4,7 @@
  * MIT Licensed
  */
 
-
+var debug = require('debug')('res.api')
 // "use strict";
 
 /**
@@ -17,19 +17,25 @@
 function api_middleware(options) {
   options = options || {};
 
-  return function *middleware(next){
-    console.log('use this.api method to render json data...');
+  return function middleware(ctx, next){
+    debug('use this.api method to render json data...');
     
-    this.type = 'application/json; charset=utf-8';
-    this.set('Content-type', 'application/json');
-    this.set('Access-Control-Allow-Origin', '*');
-    this.set('Access-Control-Allow-Methods', 'GET, POST, PATCH ,DELETE');
-    this.set('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    ctx.type = 'application/json; charset=utf-8';
+    ctx.set('Content-type', 'application/json');
+    ctx.set('Access-Control-Allow-Origin', '*');
+    ctx.set('Access-Control-Allow-Methods', 'GET, POST, PATCH ,DELETE');
+    ctx.set('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   
-    this.api = api;
-    this.api_error = api_error;
+    ctx.api = api;
+    ctx.api_error = api_error;
     
-    yield* next;
+    if (ctx.is_jsonp && ctx.is_jsonp == true) {
+      jsonp = require('koa-jsonp')
+    }
+    
+    return next().then(() => {
+      
+    });
     
   };
 }
@@ -60,7 +66,13 @@ module.exports = api_middleware;
 
  */ 
 function api(){
-  var _res = this;
+  var ctx = this;
+  var _res = this.response;
+  
+  // console.dir()
+  // return _res.body = {
+//     a:1
+//   }
   
   if(typeof(_res) != "object" || _is_not_has_prototype('end')){
     arguments = [];
@@ -77,9 +89,12 @@ function api(){
     
     return _api(http_code, api_data, api_status);
   } else if (arguments.length == 2) {
-    var http_code = 200;
-    var api_data      = arguments[0];
-    var api_status    = arguments[1];
+    var http_code     = arguments[0];
+    var api_data      = arguments[1];
+    var api_status    = {
+      code : 0,
+      msg  : 'request success!'
+    }
     
     return _api(http_code, api_data, api_status);
   } else if (arguments.length == 3) {
@@ -103,17 +118,23 @@ function api(){
     return !_res.hasOwnProperty(name)&&(name in _res);
   }
 
-  function _api (http_code, data, status) {
-    if (_res.is_jsonp && _res.is_jsonp == true) {
-      return _res.status(http_code).jsonp({
+  function _api (http_code, data, status) {  
+    debug(http_code)
+    debug(data)
+    debug(status)
+    
+    if (ctx.is_jsonp && ctx.is_jsonp == true) {
+      ctx.status = http_code
+      return ctx.body = {
         data    : data,
         status  : status
-      })
+      }
     } else {
-      return _res.status(http_code).json({
+      ctx.status = http_code
+      return ctx.body = {
         data    : data,
         status  : status
-      })
+      }
     }
   }
 }
