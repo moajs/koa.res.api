@@ -1,11 +1,9 @@
 const Koa = require('koa');
 const app = new Koa();
 const api = require('./index');
-
-app.use(api());
-
 const jsonp = require('koa-jsonp')
 
+app.use(api());
 app.use(jsonp())
 
 

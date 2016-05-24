@@ -181,6 +181,33 @@ response json data
       }
     }
 
+## jsonp support
+
+```
+const Koa = require('koa');
+const app = new Koa();
+const api = require('./index');
+const jsonp = require('koa-jsonp')
+
+app.use(api());
+app.use(jsonp())
+
+app.use(function (ctx, next){
+  ctx.is_jsonp = true;
+  
+  var data = {
+    a:1,
+    b:2
+  }
+
+  ctx.api_error(data);
+});
+```
+
+Note:
+
+- `ctx.is_jsonp = true;`
+- require `koa-jsonp`
 
 ## video
 

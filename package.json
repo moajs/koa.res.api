@@ -1,6 +1,6 @@
 {
   "name": "koa.res.api",
-  "version": "1.0.11",
+  "version": "2.0.0",
   "description": "koa.res.api is an express middleware for render json api , it convention over api format",
   "main": "index.js",
   "scripts": {
