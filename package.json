@@ -4,7 +4,7 @@
   "description": "koa.res.api is an express middleware for render json api , it convention over api format",
   "main": "index.js",
   "scripts": {
-    "start": "npm publish .",
+    "start": "npm publish --tag next",
     "test": "nodemon app.js"
   },
   "repository": {
