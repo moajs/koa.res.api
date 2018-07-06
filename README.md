@@ -23,8 +23,15 @@ more see at
 
 ## Install
 
+for koa2
+
     npm install --save koa.res.api
     
+
+如果是koa1
+
+    npm install --save koa.res.api@1
+
 ## Usages
 
     var koa     = require('koa');
