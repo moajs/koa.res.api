@@ -1,22 +1,22 @@
 {
   "name": "koa.res.api",
-  "version": "2.0.0",
-  "description": "koa.res.api is an express middleware for render json api , it convention over api format",
+  "version": "2.0.1",
+  "description": "koa.res.api is an koa middleware for render json api , it convention over api format",
   "main": "index.js",
   "scripts": {
-    "start": "npm publish --tag next",
+    "start": "npm publish",
     "test": "nodemon app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moajs/res.api.git"
+    "url": "git+https://github.com/moajs/koa.res.api.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "i5ting",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/moajs/res.api/issues"
+    "url": "https://github.com/moajs/koa.res.api/issues"
   },
-  "homepage": "https://github.com/moajs/res.api#readme",
+  "homepage": "https://github.com/moajs/koa.res.api#readme",
   "devDependencies": {
     "koa": "^2.0.0",
     "koa-jsonp": "^2.0.2"
