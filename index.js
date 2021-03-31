@@ -89,9 +89,9 @@ function api(){
     
     return _api(http_code, api_data, api_status);
   } else if (arguments.length == 2) {
-    var http_code     = arguments[0];
-    var api_data      = arguments[1];
-    var api_status    = {
+    var http_code     = 200;
+    var api_data      = arguments[0];
+    var api_status    = arguments[1] || {
       code : 0,
       msg  : 'request success!'
     }
